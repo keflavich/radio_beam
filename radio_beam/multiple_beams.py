@@ -266,7 +266,7 @@ class Beams(u.Quantity):
         if includemask is None:
             includemask = self.isfinite
         else:
-            includemask = np.logical_and(includemask, self.isfinite)
+            includemask = np.array(np.logical_and(includemask, self.isfinite))
 
         new_beam = Beam(major=self.major[includemask].mean(),
                         minor=self.minor[includemask].mean(),
@@ -286,7 +286,7 @@ class Beams(u.Quantity):
         if includemask is None:
             includemask = self.isfinite
         else:
-            includemask = np.logical_and(includemask, self.isfinite)
+            includemask = np.array(np.logical_and(includemask, self.isfinite))
 
         largest_idx = (self.major * self.minor)[includemask].argmax()
         new_beam = Beam(major=self.major[includemask][largest_idx],
@@ -303,7 +303,7 @@ class Beams(u.Quantity):
         if includemask is None:
             includemask = self.isfinite
         else:
-            includemask = np.logical_and(includemask, self.isfinite)
+            includemask = np.array(np.logical_and(includemask, self.isfinite))
 
         largest_idx = (self.major * self.minor)[includemask].argmin()
         new_beam = Beam(major=self.major[includemask][largest_idx],
